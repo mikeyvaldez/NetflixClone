@@ -1,7 +1,9 @@
 
 
 
-### CSS Framework (tailwind)
+## CSS Framework (tailwind)
+### tailwind is a css framework which makes styling in react easier. Regular CSS may get a bit tedious.
+### tailwind also eliminates the need for a css file all together. Since it will be integrated into react.
 ### Authentication (ability for the user to identify themselves)
 ### Authorization (gain access to products)
 ### Redux Toolkit (manage global state throughout our application)
