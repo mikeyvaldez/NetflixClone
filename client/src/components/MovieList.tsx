@@ -8,7 +8,7 @@ export default function MovieList() {
                 Popular Shows
             </p>
             <div className="grid grid-cols gap-2">
-                {/* <MovieCard movie= /> */}
+                <MovieCard />
             </div>
         </div>
     </div>

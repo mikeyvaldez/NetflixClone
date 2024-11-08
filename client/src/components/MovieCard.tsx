@@ -1,18 +1,18 @@
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { PlayIcon } from "@heroicons/react/24/solid";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { Movie } from "../types";
 
 const MovieCard = ({
-  movie,
+  // movie,
   lastElementRef,
 }: {
   movie: Movie;
   lastElementRef: ((node: HTMLDivElement) => void) | null;
 }) => {
-  const { thumbnailUrl, id, description, duration, title, genre } = movie;
+  // const { thumbnailUrl, id, description, duration, title, genre } = movie;
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <div
@@ -20,7 +20,7 @@ const MovieCard = ({
       ref={lastElementRef}
     >
       <img
-        src={thumbnailUrl}
+        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.1xCnvGa8H91MNgVk9O-q-AHaE8%26pid%3DApi&f=1&ipt=ebefe723ef60a694e3f6017c8d7ebaa23dd0a01cc6f3daf8da7a24d0aed7b8b6&ipo=images"
         alt="Movie"
         draggable={false}
         className="
@@ -57,7 +57,7 @@ const MovieCard = ({
       "
       >
         <img
-          src={thumbnailUrl}
+          // src={thumbnailUrl}
           alt="Movie"
           draggable={false}
           className="
@@ -87,7 +87,7 @@ const MovieCard = ({
           <div className="flex flex-row items-center gap-3">
             <button
               className="cursor-pointer w-6 h-6 lg:w-10 lg:h-10 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300"
-              onClick={() => navigate(`/browse/watch/${id}`)}
+              // onClick={() => navigate(`/browse/watch/${id}`)}
             >
               <PlayIcon className="text-black w-4 lg:w-6" />
             </button>
@@ -95,13 +95,13 @@ const MovieCard = ({
               <ChevronDownIcon className="text-white group-hover/item:text-neutral-300 w-4 lg:w-6" />
             </div>
           </div>
-          <p className="text-white font-semibold mt-4 text-2xl">{title}</p>
-          <p className="text-gray-400">{description}</p>
+          <p className="text-white font-semibold mt-4 text-2xl">Sons of Anarchy</p>
+          <p className="text-gray-400">Biker gang lead by a resilient president</p>
           <div className="flex flex-row mt-4 gap-2 items-center">
-            <p className="text-white text-[10px] lg:text-sm">{duration}</p>
+            <p className="text-white text-[10px] lg:text-sm">5 hours</p>
           </div>
           <div className="flex flex-row items-center gap-2 mt-4 text-[8px] text-white lg:text-sm">
-            <p>{genre}</p>
+            <p>Action</p>
           </div>
         </div>
       </div>
