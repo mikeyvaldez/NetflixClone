@@ -1,6 +1,7 @@
 // import { useState } from "react";
 import "./App.css";
-import BrowsePage from "./pages/BrowsePage";
+// import BrowsePage from "./pages/BrowsePage";
+import WatchPage from "./pages/WatchPage";
 // import HomePage from "./pages/HomePage";
 // import LoginPage from "./pages/LoginPage";
 // import PlansPage from "./pages/PlansPage";
@@ -10,7 +11,7 @@ function App() {
 
   return (
     <div>
-      <BrowsePage />
+      <WatchPage />
     </div>
   );
 }
