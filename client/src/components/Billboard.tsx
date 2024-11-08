@@ -15,7 +15,10 @@ export default function Billboard() {
         <p className="text-white mt-8 mb-5 drop-shadow-xl text-7xl">South Park</p>
         <div className="flex items-center mt-4 gap-3">
             <button>
-                <BillboardButton text="Play" />
+                <BillboardButton text="Play" theme="light" />                
+            </button>
+            <button>
+                <BillboardButton text="More Info" theme="dark" />                
             </button>
         </div>
       </div>
