@@ -9,8 +9,8 @@ export default function BillboardButton({ text, theme }: BillboardButtonProps) {
   return (
     <button
       className={`${
-        theme === "dark" ? "bg-opacity-30" : null
-      } bg-white rounded-md py-2 px-4 w-auto text-lg font-semibold flex items-center hover:neutral-400 transition`}
+        theme === "dark" ? "bg-opacity-60" : null
+      } bg-white rounded-md py-2 px-4 w-auto text-lg font-semibold flex items-center hover:bg-neutral-600 transition`}
     >
       <PlayIcon
         className={`w-7 ${theme === "light" ? null : "text-white"} mr-1`}
