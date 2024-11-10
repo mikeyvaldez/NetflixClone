@@ -1,13 +1,17 @@
 // import express
 const express = require("express");
+const cors = require("cors");
 const movies = require("./movies.json");
 
 // create express app
 const app = express();
 
+// middleware a
+app.use(cors());
+
 // root page
 app.get("/", (req, res) => {
-  return res.send("HELLO WORLD!");
+  return res.send(movies);
 });
 
 // movie list page
