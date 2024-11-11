@@ -1,3 +1,4 @@
+import { Movie } from "../types";
 import MovieCard from "./MovieCard";
 
 export default function MovieList({ movies }: { movies: Movie[] }) {
