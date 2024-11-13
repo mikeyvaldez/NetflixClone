@@ -4,7 +4,7 @@ import Billboard from "../components/Billboard";
 import MovieList from "../components/MovieList";
 import useMoviesList from "../hooks/useMoviesList";
 import { useState, useRef, useCallback } from "react";
-// import LoadingCards from "../components/LoadingCards";
+import LoadingCards from "../components/LoadingCards";
 // import { useSelector } from "react-redux";
 // import { RootState } from "../app/store";
 
@@ -44,7 +44,7 @@ export default function BrowsePage() {
       <div className="pb-5">
         {error && <p>{error}</p>}
         {data && <MovieList movies={data} lastElementRef={lastElementRef} />}
-        {/* {loading ? <LoadingCards /> : null} */}
+        {loading ? <LoadingCards /> : null}
       </div>
     </div>
   );
