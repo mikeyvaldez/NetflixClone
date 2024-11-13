@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import NavBar from "../components/NavBar";
 import Billboard from "../components/Billboard";
 import MovieList from "../components/MovieList";
