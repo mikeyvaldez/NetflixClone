@@ -70,10 +70,10 @@ const useMoviesList = (offset: number) => {
         `http://localhost:8080/movies/list?offset=${offset}`
       );
       const moviesData = data
-        ? [...data, ...response.data.movies]
-        : response.data.movies;
+        ? [...data, ...response.data]
+        : response.data;
       setCount(response.data.count);
-      dispatch({ type: ActionType.SUCCESS, payload: response.data });    
+      dispatch({ type: ActionType.SUCCESS, payload: moviesData });    
     } catch (error) {
       dispatch({ type: ActionType.FAILED, payload: "Something went wrong" });
     }
