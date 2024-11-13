@@ -15,7 +15,9 @@ export default function BillboardButton({ text, theme }: BillboardButtonProps) {
       <PlayIcon
         className={`w-7 ${theme === "light" ? null : "text-white"} mr-1`}
       />
-      <p className={`${theme === "light" ? "text-black" : "text-white"}`}>{text}</p>
+      <p className={`${theme === "light" ? "text-black" : "text-white"}`}>
+        {text}
+      </p>
     </button>
   );
 }

@@ -1,14 +1,23 @@
-import Billboard from "../components/Billboard";
 import NavBar from "../components/NavBar";
+import Billboard from "../components/Billboard";
 import MovieList from "../components/MovieList";
 import useMoviesList from "../hooks/useMoviesList";
 import { useState, useRef, useCallback } from "react";
+// import LoadingCards from "../components/LoadingCards";
+// import { useSelector } from "react-redux";
+// import { RootState } from "../app/store";
 
 export default function BrowsePage() {
-  const [offset, setOffset] = useState(12);
+  const [offset, setOffset] = useState(0);
   const { data, loading, error } = useMoviesList(offset);
 
   const observer = useRef<null | IntersectionObserver>(null);
+
+  // const { user, isLoading } = useSelector(
+  //   (state: RootState) => state.user.value
+  // );
+
+  // console.log({ isLoading, user });
 
   const lastElementRef = useCallback(
     (node: HTMLDivElement) => {
@@ -24,7 +33,7 @@ export default function BrowsePage() {
 
       if (node) observer.current.observe(node);
     },
-    [loading, offset]
+    [loading]
   );
 
   return (
@@ -32,9 +41,9 @@ export default function BrowsePage() {
       <NavBar />
       <Billboard />
       <div className="pb-5">
-        {loading && <p>Loading...</p>}
         {error && <p>{error}</p>}
         {data && <MovieList movies={data} lastElementRef={lastElementRef} />}
+        {/* {loading ? <LoadingCards /> : null} */}
       </div>
     </div>
   );

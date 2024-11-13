@@ -5,9 +5,10 @@ import { Movie } from "../types";
 
 const MovieCard = ({
   movie,
+  lastElementRef
 }: {
   movie: Movie;
-  lastElementRef: ((node: HTMLDivElement) => void);
+  lastElementRef: ((node: HTMLDivElement) => void) | null;
 }) => {
   const { thumbnailUrl, id, description, duration, title, genre } = movie;
 
@@ -15,7 +16,7 @@ const MovieCard = ({
 
   return (
     <div
-      className="group bg-zinc-900 col-span relative h-[12vw] w-[24%]"
+      className="group bg-zinc-900 col-span relative h-[12vw] w-[24%]" ref={lastElementRef}
       onClick={() => navigate(`/browse/watch/${id}`)}
     >
       <img
