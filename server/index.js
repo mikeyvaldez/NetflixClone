@@ -1,12 +1,12 @@
 // import express
 const express = require("express");
 const cors = require("cors");
-const movies = require("./movies.json");
+const { prisma } = require("./db")
 
 // create express app
 const app = express();
 
-// middleware a
+// middleware
 app.use(cors());
 
 // root page
@@ -15,19 +15,27 @@ app.get("/", (req, res) => {
 });
 
 // movie list page
-app.get("/movies/list", (req, res) => {
-  const offset = parseInt(req.query.offset);
-  const from = offset;
-  const to = from + 12;
-  const moviesSubset = [...movies].slice(from, to);
-  setTimeout(() => {
-    return res.json({ movies: moviesSubset, count: movies.length });
-  }, 3000);
+app.get("/movies/list", async (req, res) => {
+  const offset = parseInt(req.query.offset);  
+  const count = await prisma.movie.count()     // utilizing prisma to hold the amount of data
+  // implementing pagination using prisma
+  const movies = await prisma.movie.findMany({
+    take: 12,
+    skip: offset
+  });
+
+  return res.json({movies, count});
 });
 
-app.get("/movie/:id", (req, res) => {
-  const id = req.params.id;
-  const movie = movies.find(m => m.id === id);
+app.get("/movie/:id", async (req, res) => {
+  const id = req.params.id;  
+
+  // using prisma to find movie by id
+  const movie = await prisma.movie.findUnique({
+    where: {
+      id: parseInt(id),
+    }
+  })
   return res.send(movie);
   
 });
