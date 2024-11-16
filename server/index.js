@@ -1,7 +1,7 @@
-// import express
-const express = require("express");
-const cors = require("cors");
-const { prisma } = require("./db")
+
+const express = require("express");  // import express
+const cors = require("cors");        // import cors
+const { prisma } = require("./db")   // import prisma
 
 // create express app
 const app = express();
