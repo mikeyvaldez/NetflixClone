@@ -40,7 +40,18 @@ router.post(
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    res.send(hashedPassword);
+
+    const newUser = await prisma.user.create({
+      data: {
+        email,
+        username,
+        password: hashedPassword,
+      },
+    })
+
+    res.json({
+      user: newUser,
+    });
     
   }
 );
