@@ -1,9 +1,9 @@
 import NavBar from "../components/NavBar";
 import Input from "../components/Input";
-import { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { createContext, useState } from "react";
+import { useForm, SubmitHandler, UseFormRegister } from "react-hook-form";
 
-type Inputs = {
+export type Inputs = {
   email: string;
   name: string;
   password: string;
@@ -13,6 +13,14 @@ enum Variant {
   SIGN_UP,
   LOGIN_IN,
 }
+
+interface AuthFormContextType {
+  register: UseFormRegister<Inputs> | null;
+}
+
+export const AuthFormContext = createContext<AuthFormContextType>({
+  register: null,
+});
 
 export default function LoginPage() {
   const {
@@ -26,7 +34,7 @@ export default function LoginPage() {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data);
-  }
+  };
 
   return (
     <div className="relative bg-black h-screen w-screen bg-opacity-50">
@@ -34,17 +42,30 @@ export default function LoginPage() {
       <div className="flex justify-center items-center h-full">
         <div className="bg-black bg-opacity-70 p-16 self-center mt-2 w-full max-w-md rounded-md">
           <h2 className="text-white text-4xl mb-8 font-semibold">Sign in</h2>
-          <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-            {variant === Variant.SIGN_UP && (
-              <Input id="username" type="text" label="Username" />
-            )}
-            <Input id="email" type="email" label="Email address" />
-            <Input id="password" type="password" label="Password" />
-            <input
-              type="submit"
-              className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-800"
-            />
-          </form>
+
+          {/* by using AuthFormContext.Provider, gives us access to the register function
+          within every single component that is a child of the provider */}
+          <AuthFormContext.Provider
+            value={{
+              register,
+            }}
+          >
+            <form
+              className="flex flex-col gap-4"
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              {variant === Variant.SIGN_UP && (
+                <Input id="username" type="text" label="Username" name="name" />
+              )}
+              <Input id="email" type="email" label="Email address" name="email" />
+              <Input id="password" type="password" label="Password" name="password" />
+              <input
+                type="submit"
+                className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-800"
+              />
+            </form>
+          </AuthFormContext.Provider>
+
           {variant === Variant.LOGIN_IN ? (
             <p
               className="text-neutral-500 mt-12"
