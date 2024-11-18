@@ -10,7 +10,7 @@ interface InputProps {
 }
 
 export default function Input({ id, label, type, name, validate }: InputProps) {
-  const { register } = useContext(AuthFormContext);
+  const { register, errors } = useContext(AuthFormContext);
 
   if (!register) return null;
 
@@ -44,6 +44,8 @@ export default function Input({ id, label, type, name, validate }: InputProps) {
       >
         {label}
       </label>
+      { errors[name]?.type === "required" && <p className="text-red-600">This field is required</p> }
+      { errors[name]?.type === "validate" && <p className="text-red-600">{errors[name]?.message}</p> }
     </div>
   );
 }
