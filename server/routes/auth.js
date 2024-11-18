@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { check, validationResult } = require("express-validator");
+const { prisma } = require("../db");
 
 router.post(
   "/signup",
@@ -17,14 +18,26 @@ router.post(
   async (req, res) => {
     const errors = validationResult(req);
 
-    if(!errors.isEmpty()){
-        return res.status(400).json({
-            errors: errors.array()
-        })
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
     }
 
-    res.send("VALID")
-    
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (user) {
+      return res.status(400).json({
+        errors: [{ msg: "This user already exists" }],
+      });
+    }
+
+    res.send("VALID");
+
     const { email, password, username } = req.body;
   }
 );
