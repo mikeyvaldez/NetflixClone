@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import NavBar from "../components/NavBar";
 import Input from "../components/Input";
 import { createContext, useState } from "react";
@@ -27,9 +28,10 @@ export default function LoginPage() {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
+    getValues,
   } = useForm<Inputs>();
 
+  console.log(errors);
   const [variant, setVariant] = useState(Variant.LOGIN_IN);
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -57,8 +59,34 @@ export default function LoginPage() {
               {variant === Variant.SIGN_UP && (
                 <Input id="username" type="text" label="Username" name="name" />
               )}
-              <Input id="email" type="email" label="Email address" name="email" />
-              <Input id="password" type="password" label="Password" name="password" />
+              <Input
+                id="email"
+                type="email"
+                label="Email address"
+                name="email"
+              />
+              <Input
+                id="password"
+                type="password"
+                label="Password"
+                name="password"
+                validate={variant === Variant.SIGN_UP ? () => {
+                    const password = getValues("password");
+                    if(password.length < 8){
+                        return "Password must be greater than 8 characters"
+                    }
+                    if(!/[A-Z]/.test(password)){
+                        return "Password must have at least one uppercase value"
+                    }
+                    if(!/[a-z]/.test(password)){
+                        return "Password must have at least one lowercase value"
+                    }
+                    if(!/\d/.test(password)){
+                        return "Password must have a number"
+                    }
+                    return true;
+                } : undefined}
+              />
               <input
                 type="submit"
                 className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-800"

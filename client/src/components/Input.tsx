@@ -6,13 +6,13 @@ interface InputProps {
   label: string;
   type?: string;
   name: keyof Inputs;
+  validate?: (text: string) => string | true;
 }
 
-export default function Input({ id, label, type, name }: InputProps) {
+export default function Input({ id, label, type, name, validate }: InputProps) {
+  const { register } = useContext(AuthFormContext);
 
-  const { register } = useContext(AuthFormContext)
-
-  if(!register) return null;
+  if (!register) return null;
 
   return (
     <div className="relative">
@@ -20,7 +20,10 @@ export default function Input({ id, label, type, name }: InputProps) {
         id={id}
         type={type}
         className="block rounded-md px-6 pt-6 pb-1 w-full text-md text-white bg-neutral-700 appearance-none focus:outline-none focus:ring-0 peer invalid:border-b-1"
-        {...register(name)}
+        {...register(name, {
+          required: true,
+          validate,
+        })}
       />
       <label
         className="absolute 
