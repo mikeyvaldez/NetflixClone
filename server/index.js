@@ -1,22 +1,19 @@
 
 const express = require("express");  // import express
 const cors = require("cors");        // import cors
-const { prisma } = require("./db")   // import prisma
+const app = express();  // create express app
 
-// create express app
-const app = express();
-
-// middleware
+app.use(express.json())
 app.use(cors());
 
 // root page
 app.get("/", (req, res) => {
-  return res.send(movies);
+  return res.send("HELLO WORLD");
 });
 
 
-app.use("", require("/routes/movies"));
-app.use("/auth", require("/routes/auth"));
+app.use("", require("./routes/movies"));
+app.use("/auth", require("./routes/auth"));
 
 // listen on port
 app.listen(8080, () => {
