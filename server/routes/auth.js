@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { check, validationResult } = require("express-validator");
 const { prisma } = require("../db");
+const bcrypt = require("bcrypt")
 
 router.post(
   "/signup",
@@ -24,6 +25,8 @@ router.post(
       });
     }
 
+    const { email, password, username } = req.body;
+
     const user = await prisma.user.findUnique({
       where: {
         email,
@@ -36,9 +39,9 @@ router.post(
       });
     }
 
-    res.send("VALID");
-
-    const { email, password, username } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    res.send(hashedPassword);
+    
   }
 );
 
