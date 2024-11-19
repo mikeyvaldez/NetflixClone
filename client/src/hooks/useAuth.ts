@@ -83,7 +83,12 @@ const useAuth = () => {
     }
   };
 
-  return { signup, login, fetchUser };
+  const logout = () => {
+    cookie.remove("session_token")
+    return dispatch(clearUser());
+  }
+
+  return { signup, login, logout, fetchUser };
 };
 
 export default useAuth;
