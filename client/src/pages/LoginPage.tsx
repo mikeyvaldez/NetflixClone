@@ -3,7 +3,13 @@ import NavBar from "../components/NavBar";
 import Input from "../components/Input";
 import { createContext, useState } from "react";
 // useForm - is a custom hook for managing forms with ease. It takes one object as optional argument.
-import { useForm, SubmitHandler, UseFormRegister, FieldErrors } from "react-hook-form";
+import {
+  useForm,
+  SubmitHandler,
+  UseFormRegister,
+  FieldErrors,
+} from "react-hook-form";
+import useAuth from "../hooks/useAuth";
 
 export type Inputs = {
   email: string;
@@ -23,7 +29,7 @@ interface AuthFormContextType {
 
 export const AuthFormContext = createContext<AuthFormContextType>({
   register: null,
-  errors: {}
+  errors: {},
 });
 
 export default function LoginPage() {
@@ -34,11 +40,23 @@ export default function LoginPage() {
     getValues,
   } = useForm<Inputs>();
 
-  console.log(errors);
   const [variant, setVariant] = useState(Variant.LOGIN_IN);
-
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+  const { signup, login } = useAuth();
+  const onSubmit: SubmitHandler<Inputs> = async ({ password, email, name }) => {
+    if (variant === Variant.SIGN_UP) {
+      const response = await signup({
+        email,
+        password,
+        username: name,
+      });
+      console.log(response);
+    } else {
+      const response = await login({
+        email,
+        password,        
+      });
+      console.log(response);      
+    }
   };
 
   return (
@@ -46,7 +64,9 @@ export default function LoginPage() {
       <NavBar />
       <div className="flex justify-center items-center h-full">
         <div className="bg-black bg-opacity-70 p-16 self-center mt-2 w-full max-w-md rounded-md">
-          <h2 className="text-white text-4xl mb-8 font-semibold">Sign in</h2>
+          <h2 className="text-white text-4xl mb-8 font-semibold">
+            {variant === Variant.SIGN_UP ? "Sign up" : "Log in"}
+          </h2>
 
           {/* by using AuthFormContext.Provider, gives us access to the register function
           within every single component that is a child of the provider */}
@@ -74,22 +94,26 @@ export default function LoginPage() {
                 type="password"
                 label="Password"
                 name="password"
-                validate={variant === Variant.SIGN_UP ? () => {
-                    const password = getValues("password");
-                    if(password.length < 8){
-                        return "Password must be greater than 8 characters"
-                    }
-                    if(!/[A-Z]/.test(password)){
-                        return "Password must have at least one uppercase value"
-                    }
-                    if(!/[a-z]/.test(password)){
-                        return "Password must have at least one lowercase value"
-                    }
-                    if(!/\d/.test(password)){
-                        return "Password must have a number"
-                    }
-                    return true;
-                } : undefined}
+                validate={
+                  variant === Variant.SIGN_UP
+                    ? () => {
+                        const password = getValues("password");
+                        if (password.length < 8) {
+                          return "Password must be greater than 8 characters";
+                        }
+                        if (!/[A-Z]/.test(password)) {
+                          return "Password must have at least one uppercase value";
+                        }
+                        if (!/[a-z]/.test(password)) {
+                          return "Password must have at least one lowercase value";
+                        }
+                        if (!/\d/.test(password)) {
+                          return "Password must have a number";
+                        }
+                        return true;
+                      }
+                    : undefined
+                }
               />
               <input
                 type="submit"
