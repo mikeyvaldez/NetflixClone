@@ -18,12 +18,12 @@ const initialState: UserState = {
     }
 }
 
-export const uerSlice = createSlice({
+export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
         setUser: (state, action: PayloadAction<User>) => {
-            state.value.user = action.PayloadAction
+            state.value.user = action.payload;
             state.value.isLoading = false;
         }
     }
