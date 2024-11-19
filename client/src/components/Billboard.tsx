@@ -1,4 +1,3 @@
-// import southpark from "../assets/southpark.mp4";
 import BillboardButton from "./BillboardButton";
 
 export default function Billboard() {
@@ -6,7 +5,7 @@ export default function Billboard() {
     <div className="relative h-screen">      
       <iframe
         className="h-full w-full"
-        src="https://www.youtube.com/embed/paBZJJXUEtg?autoplay=1"                
+        src="https://www.youtube.com/embed/paBZJJXUEtg?autoplay=1&mute=1"                
         allow="autoplay"                
       ></iframe>
       <div className="absolute top-[40%] ml-16">
