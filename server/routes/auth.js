@@ -5,7 +5,8 @@ const bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
 const { json } = require("express");
 
-// this post route creates a new user:
+// post requests create data
+// this post request creates a new user
 router.post(
   // validate input
   "/signup",

@@ -2,6 +2,7 @@
 import NavBar from "../components/NavBar";
 import Input from "../components/Input";
 import { createContext, useState } from "react";
+// useForm - is a custom hook for managing forms with ease. It takes one object as optional argument.
 import { useForm, SubmitHandler, UseFormRegister, FieldErrors } from "react-hook-form";
 
 export type Inputs = {
