@@ -36,7 +36,7 @@ enum ActionType {
 
 type Action =
   | { type: ActionType.LOADING }
-  | { type: ActionType.SUCCESS; payload: Movie }
+  | { type: ActionType.SUCCESS; payload: Plan[] }
   | { type: ActionType.FAILED; payload: string };
 
 const reducer = (_: State, action: Action) => {
