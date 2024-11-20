@@ -1,17 +1,23 @@
-
-// This useMovie hook is managing the fetch state which can be:
-// either successful, loading, or fail
-// then it is making an api call to our endpoint (http://localhost:8080/movie/${id})
-// and returning all three different states (data, loading, error)
+// this hook is going to make an api call to the products endpoint
+// specified in sub.js, and it is going to return the data to the client
 
 
 
 import { useEffect, useReducer } from "react";
 import axios from "axios";
-import { Movie } from "../types";
+
+
+interface Plan {
+    id: string;
+    name: string;
+    price: {
+        amount: number;
+        id: string;
+    };
+}
 
 interface State {
-  data: Movie | null;
+  data: Plan[] | null;
   error: string | null;
   loading: boolean;
 }
@@ -80,9 +86,3 @@ const useMovie = (id: string) => {
 
 export default useMovie;
 
-// LOADING
-// {type: LOADING}
-// ERROR
-// {type: ERROR, payload: string}
-// SUCCESS
-// {type: SUCCESS, payload: Movies[]}
