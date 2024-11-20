@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-import "./App.css";
 import useAuth from "./hooks/useAuth";
 import { useEffect } from "react";
 
