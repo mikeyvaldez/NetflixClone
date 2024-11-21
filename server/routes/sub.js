@@ -17,6 +17,8 @@ router.get("/products", async (req, res) => {
         return {
             id,
             name,
+            canDownload: true,
+            canWatchTPB: name === "Premium Plan" ? true : false,
             price: {
                 amount: default_price.unit_amount,
                 id: default_price.id,
