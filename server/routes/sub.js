@@ -5,7 +5,8 @@
 // require express router
 const router = require("express").Router();
 const { stripe } = require("../utils/stripe");
-// const checkAuth = require("../middleware");
+const checkAuth = require("../middleware");
+
 
 // logic to fetch our products
 
@@ -48,5 +49,9 @@ router.post("/session", async (req, res) => {
   
     return res.json(session);
   });
+
+  router.get("/subscription", checkAuth, async (req, res) => {
+    res.json(req.user);
+  })
 
 module.exports = router;
