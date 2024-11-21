@@ -1,17 +1,10 @@
-
-// This useMovie hook is managing the fetch state which can be:
-// either successful, loading, or fail
-// then it is making an api call to our endpoint (http://localhost:8080/movie/${id})
-// and returning all three different states (data, loading, error)
-
-
-
-import { useEffect, useReducer } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useReducer, useState } from "react";
 import axios from "axios";
 import { Movie } from "../types";
 
 interface State {
-  data: Movie | null;
+  data: Movie[] | null;
   error: string | null;
   loading: boolean;
 }
@@ -23,66 +16,70 @@ const initialState: State = {
 };
 
 enum ActionType {
-    LOADING,
-    SUCCESS,
-    FAILED
+  LOADING,
+  SUCCESS,
+  FAILED,
 }
 
 type Action =
   | { type: ActionType.LOADING }
-  | { type: ActionType.SUCCESS; payload: Movie }
+  | { type: ActionType.SUCCESS; payload: Movie[] }
   | { type: ActionType.FAILED; payload: string };
 
-const reducer = (_: State, action: Action) => {
-    switch(action.type){
-        case ActionType.LOADING:
-            return {                
-                loading: true,
-                error: null,
-                data: null
-            }
-        case ActionType.FAILED:
-            return {
-                loading: false,
-                error: action.payload,
-                data: null                
-            }
-        case ActionType.SUCCESS:
-            return {
-                loading: false,
-                error: null,
-                data: action.payload                
-            }
-        default:
-            return initialState;
-    }
+const reducer = (state: State, action: Action): State => {
+  switch (action.type) {
+    case ActionType.LOADING:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case ActionType.FAILED:
+      return {
+        loading: false,
+        error: action.payload,
+        data: null,
+      };
+    case ActionType.SUCCESS:
+      return {
+        loading: false,
+        error: null,
+        data: action.payload,
+      };
+    default:
+      return initialState;
+  }
 };
 
-const useMovie = (id: string) => {
-  const [{data, loading, error}, dispatch] = useReducer(reducer, initialState);
+const useMoviesList = (offset: number) => {
+  const [{ data, loading, error }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
+  const [count, setCount] = useState<number | null>(null);
 
   useEffect(() => {
-    fetchMovie();
-  }, []);
+    fetchMoviesList();
+  }, [offset]);
 
-  const fetchMovie = async () => {
-    dispatch({type: ActionType.LOADING})
+  const fetchMoviesList = async () => {
+    if (data && count && data.length >= count) return;
+    dispatch({ type: ActionType.LOADING });
     try {
-      const response = await axios.get(`http://localhost:8080/movie/${id}`);      
-      dispatch({ type: ActionType.SUCCESS, payload: response.data })
+      const response = await axios.get(
+        `http://localhost:8080/movies/list?offset=${offset}`
+      );
+      const moviesData = data
+        ? [...data, ...response.data.movies]
+        : response.data.movies;
+      setCount(response.data.count);
+      dispatch({ type: ActionType.SUCCESS, payload: moviesData });
     } catch (error) {
-      dispatch({ type: ActionType.FAILED, payload: "Something went wrong" })
+      dispatch({ type: ActionType.FAILED, payload: "Something went wrong" });
     }
   };
 
   return { data, loading, error };
 };
 
-export default useMovie;
-
-// LOADING
-// {type: LOADING}
-// ERROR
-// {type: ERROR, payload: string}
-// SUCCESS
-// {type: SUCCESS, payload: Movies[]}
+export default useMoviesList;
