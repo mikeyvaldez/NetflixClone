@@ -57,11 +57,14 @@ const reducer = (_: State, action: Action): State => {
   }
 };
 
-type UseSubscription = () => [{
+type UseSubscription = () => [
+  {
     data: Subscription | null;
     loading: boolean;
     error: string | null;
-}, () => Promise<Subscription>]
+  },
+  () => Promise<Subscription>
+];
 
 const useSubscription: UseSubscription = () => {
   const [{ data, loading, error }, dispatch] = useReducer(

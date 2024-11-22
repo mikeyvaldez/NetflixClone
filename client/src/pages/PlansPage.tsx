@@ -20,28 +20,17 @@ const createSession = async (email: string, priceId: string) => {
 
 export default function PlansPage() {
   const { loading, data } = usePlans();
-  const [
-    { data: subscription, loading: subscriptionLoading },
-    fetchSubscription,
-  ] = useSubscription();
   const [selectedSession, setSelectedSession] = useState<null | string>(null);
   const { user } = useSelector((state: RootState) => state.user.value);
 
+  if (loading) return <div>Loading...</div>;
+
   const handleClick = () => {
     if (user && selectedSession) {
-      createSession(user?.email, selectedSession);
+      createSession(user.email, selectedSession);
     }
   };
 
-  useEffect(() => {
-    fetchSubscription();
-  }, []);
-
-  if (loading || subscriptionLoading) return <div>Loading...</div>;
-
-  if (subscription) {
-    return <Navigate to="/plans/manage" />;
-  }
 
   return (
     <div className="flex items-center h-screen justify-center">

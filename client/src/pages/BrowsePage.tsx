@@ -7,6 +7,7 @@ import { useState, useRef, useCallback } from "react";
 import LoadingCards from "../components/LoadingCards";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
+import { Navigate } from "react-router-dom";
 
 export default function BrowsePage() {
   const [offset, setOffset] = useState(0);
@@ -36,6 +37,8 @@ export default function BrowsePage() {
     },
     [loading]
   );
+
+  if(error === "Unauthorized: no plan") return <Navigate to="/plans" />
 
   return (
     <div>
