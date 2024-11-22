@@ -6,6 +6,7 @@
 const router = require("express").Router();
 const { stripe } = require("../utils/stripe");
 const checkAuth = require("../middleware");
+const fetchSubscription = require("../services/fetchSubscription")
 
 // logic to fetch our products
 
@@ -50,28 +51,15 @@ router.post("/session", async (req, res) => {
 });
 
 router.get("/subscription", checkAuth, async (req, res) => {
-    const response = await stripe.customers.search({
-        query: `email: \'${req.user.email}\'`,
-    });
-    
-    if(response.data[0]){
-        const customer  = response.data[0];
+  const response = await stripe.customers.search({
+    query: `email: \'${req.user.email}\'`,
+  });
 
-        const subscriptions = await stripe.subscriptions.list({
-            customer: customer.id,
-            expand: ["data.plan.product"]
-          });
+  if (response.data[0]) {
+    const subscription = await fetchSubscription(req.user.email);
 
-          if(subscriptions.data[0]){
-            return res.json(subscriptions.data[0].plan.product);
-          } else {
-            return res.send(null)
-          }
-          
-          
-    } else {
-        return res.send(null)
-    }    
+    res.json(subscription);
+  }
 });
 
 module.exports = router;
