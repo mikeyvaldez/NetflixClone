@@ -17,7 +17,7 @@ import PlansPage from "./pages/PlansPage.tsx";
 import BrowsePage from "./pages/BrowsePage.tsx";
 import WatchPage from "./pages/WatchPage.tsx";
 import PrivateRoutes from "./utils/PrivateRoutes.tsx";
-import PlansManagePage from "./pages/PlansManage.tsx";
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,8 +25,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/plans" element={<PrivateRoutes />}>
-        <Route path="/plans" element={<PlansPage />} />
-        <Route path="/plans/manage" element={<PlansManagePage />} />
+        <Route path="/plans" element={<PlansPage />} />        
       </Route>
       <Route path="/browse" element={<PrivateRoutes />}>
         <Route path="/browse" element={<BrowsePage />} />

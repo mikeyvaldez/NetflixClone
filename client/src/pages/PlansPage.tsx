@@ -4,8 +4,6 @@ import usePlans from "../hooks/usePlans";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { RootState } from "@reduxjs/toolkit/query";
-import useSubscription from "../hooks/useSubscription";
-import { Navigate } from "react-router-dom";
 
 const createSession = async (email: string, priceId: string) => {
   const response = await axios.post("http://localhost:8080/sub/session", {
