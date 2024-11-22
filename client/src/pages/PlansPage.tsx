@@ -19,7 +19,7 @@ const createSession = async (email: string, priceId: string) => {
 };
 
 export default function PlansPage() {
-  const { loading, data, error } = usePlans();
+  const { loading, data } = usePlans();
   const [
     { data: subscription, loading: subscriptionLoading },
     fetchSubscription,
