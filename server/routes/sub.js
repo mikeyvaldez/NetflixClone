@@ -8,6 +8,8 @@ const { stripe } = require("../utils/stripe");
 const checkAuth = require("../middleware");
 const fetchSubscription = require("../services/fetchSubscription")
 
+const url = process.env.REACT_URL;
+
 // logic to fetch our products
 
 router.get("/products", async (req, res) => {
@@ -42,8 +44,8 @@ router.post("/session", async (req, res) => {
         quantity: 1,
       },
     ],
-    success_url: "http://localhost:5173/browse",
-    cancel_url: "http://localhost:5173/plans",
+    success_url: `${url}/browse`,
+    cancel_url: `${url}/plans`,
     customer_email: email,
   });
 
