@@ -73,7 +73,7 @@ const usePlans = () => {
   const fetchPlansList = async () => {
     dispatch({ type: ActionType.LOADING });
     try {
-      const response = await axios.get("http://localhost:8080/sub/products");
+      const response = await axios.get("https://netflixclone-eawo.onrender.com/sub/products");
 
       dispatch({ type: ActionType.SUCCESS, payload: response.data });
     } catch (error) {

@@ -77,7 +77,7 @@ const useSubscription: UseSubscription = () => {
     dispatch({ type: ActionType.LOADING });
     try {
       const response = await axios.get(
-        "http://localhost:8080/sub/subscription",
+        "https://netflixclone-eawo.onrender.com/sub/subscription",
         {
           headers: {
             ...(sessionToken

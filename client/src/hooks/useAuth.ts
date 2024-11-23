@@ -15,7 +15,7 @@ const useAuth = () => {
     email: string;
     password: string;
   }) => {
-    const response = await axios.post("http://localhost:8080/auth/login", {
+    const response = await axios.post("https://netflixclone-eawo.onrender.com/auth/login", {
       email,
       password,
     });
@@ -39,7 +39,7 @@ const useAuth = () => {
     password: string;
     username: string;
   }) => {
-    const response = await axios.post("http://localhost:8080/auth/signup", {
+    const response = await axios.post("https://netflixclone-eawo.onrender.com/auth/signup", {
       email,
       password,
       username,
@@ -58,7 +58,7 @@ const useAuth = () => {
   const fetchUser = async () => {
     const sessionToken = cookie.get("session_token");
     try {
-      const response = await axios.get("http://localhost:8080/auth/me", {
+      const response = await axios.get("https://netflixclone-eawo.onrender.com/auth/me", {
         headers: {
           ...(sessionToken
             ? { Authorization: `Bearer ${sessionToken}` }

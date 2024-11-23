@@ -8,7 +8,7 @@ const { stripe } = require("../utils/stripe");
 const checkAuth = require("../middleware");
 const fetchSubscription = require("../services/fetchSubscription")
 
-const url = process.env.REACT_URL;
+// const url = process.env.REACT_URL;
 
 // logic to fetch our products
 
@@ -44,8 +44,8 @@ router.post("/session", async (req, res) => {
         quantity: 1,
       },
     ],
-    success_url: `${url}/browse`,
-    cancel_url: `${url}/plans`,
+    success_url: `/browse`,
+    cancel_url: `/plans`,
     customer_email: email,
   });
 

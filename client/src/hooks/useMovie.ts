@@ -68,7 +68,7 @@ const useMovie = (id: string) => {
     const sessionToken = cookie.get("session_token");
     dispatch({ type: ActionType.LOADING });
     try {
-      const response = await axios.get(`http://localhost:8080/movie/${id}`, {
+      const response = await axios.get(`https://netflixclone-eawo.onrender.com/movie/${id}`, {
         headers: {
           ...(sessionToken
             ? { Authorization: `Bearer ${sessionToken}` }

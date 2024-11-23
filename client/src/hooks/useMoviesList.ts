@@ -71,7 +71,7 @@ const useMoviesList = (offset: number) => {
     dispatch({ type: ActionType.LOADING });
     try {
       const response = await axios.get(
-        `http://localhost:8080/movies/list?offset=${offset}`,
+        `https://netflixclone-eawo.onrender.com/movies/list?offset=${offset}`,
         {
           headers: {
             ...(sessionToken

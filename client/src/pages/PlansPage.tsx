@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@reduxjs/toolkit/query";
 
 const createSession = async (email: string, priceId: string) => {
-  const response = await axios.post("http://localhost:8080/sub/session", {
+  const response = await axios.post("https://netflixclone-eawo.onrender.com/sub/session", {
     email,
     priceId,
   });
