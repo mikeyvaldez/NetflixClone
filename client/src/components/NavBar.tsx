@@ -1,4 +1,4 @@
-import { RootState } from "@reduxjs/toolkit/query";
+import { RootState } from "../app/store";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import useAuth from "../hooks/useAuth";

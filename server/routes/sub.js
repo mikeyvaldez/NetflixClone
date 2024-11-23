@@ -44,8 +44,8 @@ router.post("/session", async (req, res) => {
         quantity: 1,
       },
     ],
-    success_url: `/browse`,
-    cancel_url: `/plans`,
+    success_url: "https://graceful-paletas-d17270.netlify.app//browse",
+    cancel_url: "https://graceful-paletas-d17270.netlify.app//plans",
     customer_email: email,
   });
 

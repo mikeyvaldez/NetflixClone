@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PlanCard from "../components/PlanCard";
 import usePlans from "../hooks/usePlans";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { RootState } from "@reduxjs/toolkit/query";
+import { RootState } from "../app/store";
 
 const createSession = async (email: string, priceId: string) => {
   const response = await axios.post("https://netflixclone-eawo.onrender.com/sub/session", {

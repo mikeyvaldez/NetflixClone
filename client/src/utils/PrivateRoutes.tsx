@@ -1,4 +1,4 @@
-import { RootState } from "@reduxjs/toolkit/query";
+import { RootState } from "../app/store";
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 
