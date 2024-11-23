@@ -16,7 +16,9 @@ app.use("", require("./routes/movies"));
 app.use("/auth", require("./routes/auth"));
 app.use("/sub", require("./routes/sub"));
 
+const port = process.env.PORT || 8080;
+
 // listen on port
-app.listen(8080, () => {
-  console.log("Now listening on PORT 8080");
+app.listen(port, () => {
+  console.log(`Now listening on PORT ${port}`);
 });
