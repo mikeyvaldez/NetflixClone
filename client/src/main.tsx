@@ -19,6 +19,7 @@ import WatchPage from "./pages/WatchPage.tsx";
 import PrivateRoutes from "./utils/PrivateRoutes.tsx";
 
 
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
