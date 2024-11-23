@@ -8,7 +8,7 @@ const { stripe } = require("../utils/stripe");
 const checkAuth = require("../middleware");
 const fetchSubscription = require("../services/fetchSubscription")
 
-const react_url = process.env.REACT_URL;
+
 
 // logic to fetch our products
 
@@ -44,8 +44,8 @@ router.post("/session", async (req, res) => {
         quantity: 1,
       },
     ],
-    success_url: `${react_url}/browse`,
-    cancel_url: `${react_url}/plans`,
+    success_url: "https://emveeFlix.onrender.com/browse",
+    cancel_url: "https://emveeFlix.onrender.com/plans",
     customer_email: email,
   });
 
