@@ -4,9 +4,13 @@ import usePlans from "../hooks/usePlans";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
+import dotenv from "dotenv";
+
+dotenv.config();
+const expressurl = process.env.EXPRESS_URL;
 
 const createSession = async (email: string, priceId: string) => {
-  const response = await axios.post("https://netflixclone-eawo.onrender.com/sub/session", {
+  const response = await axios.post(`${expressurl}/sub/session`, {
     email,
     priceId,
   });

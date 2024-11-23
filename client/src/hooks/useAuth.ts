@@ -2,8 +2,12 @@ import axios from "axios";
 import Cookie from "universal-cookie";
 import { useDispatch } from "react-redux"; // this is a hook
 import { clearUser, setUser } from "../features/userSlice";
+import dotenv from 'dotenv';
 
 const cookie = new Cookie();
+dotenv.config();
+const url = process.env.EXPRESS_URL;
+
 
 const useAuth = () => {
   const dispatch = useDispatch();
@@ -15,7 +19,7 @@ const useAuth = () => {
     email: string;
     password: string;
   }) => {
-    const response = await axios.post("https://netflixclone-eawo.onrender.com/auth/login", {
+    const response = await axios.post(`${url}/auth/login`, {
       email,
       password,
     });
@@ -39,7 +43,7 @@ const useAuth = () => {
     password: string;
     username: string;
   }) => {
-    const response = await axios.post("https://netflixclone-eawo.onrender.com/auth/signup", {
+    const response = await axios.post(`${url}/auth/signup`, {
       email,
       password,
       username,
@@ -58,7 +62,7 @@ const useAuth = () => {
   const fetchUser = async () => {
     const sessionToken = cookie.get("session_token");
     try {
-      const response = await axios.get("https://netflixclone-eawo.onrender.com/auth/me", {
+      const response = await axios.get(`${url}/auth/me`, {
         headers: {
           ...(sessionToken
             ? { Authorization: `Bearer ${sessionToken}` }

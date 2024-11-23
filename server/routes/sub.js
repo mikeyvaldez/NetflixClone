@@ -44,8 +44,8 @@ router.post("/session", async (req, res) => {
         quantity: 1,
       },
     ],
-    success_url: "https://emveeflix.netlify.app/browse",
-    cancel_url: "https://emveeflix.netlify.app/plans",
+    success_url: "https://localhost:5173/browse",
+    cancel_url: "https://localhost:5173/plans",
     customer_email: email,
   });
 

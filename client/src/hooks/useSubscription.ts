@@ -1,6 +1,10 @@
 import { useReducer } from "react";
 import axios from "axios";
 import Cookie from "universal-cookie";
+import dotenv from "dotenv";
+
+dotenv.config();
+const url = process.env.EXPRESS_URL
 
 const cookie = new Cookie();
 
@@ -77,7 +81,7 @@ const useSubscription: UseSubscription = () => {
     dispatch({ type: ActionType.LOADING });
     try {
       const response = await axios.get(
-        "https://netflixclone-eawo.onrender.com/sub/subscription",
+        `${url}/sub/subscription`,
         {
           headers: {
             ...(sessionToken

@@ -3,6 +3,10 @@ import { useEffect, useReducer, useState } from "react";
 import axios from "axios";
 import { Movie } from "../types";
 import Cookie from "universal-cookie";
+import dotenv from "dotenv";
+
+dotenv.config()
+const url = process.env.EXPRESS_URL;
 
 const cookie = new Cookie();
 
@@ -71,7 +75,7 @@ const useMoviesList = (offset: number) => {
     dispatch({ type: ActionType.LOADING });
     try {
       const response = await axios.get(
-        `https://netflixclone-eawo.onrender.com/movies/list?offset=${offset}`,
+        `${url}/movies/list?offset=${offset}`,
         {
           headers: {
             ...(sessionToken

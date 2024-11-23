@@ -1,5 +1,9 @@
 import { useEffect, useReducer } from "react";
 import axios from "axios";
+import dotenv from "dotenv";
+
+dotenv.config();
+const url = process.env.EXPRESS_URL;
 
 export interface Plan {
   id: string;
@@ -73,7 +77,7 @@ const usePlans = () => {
   const fetchPlansList = async () => {
     dispatch({ type: ActionType.LOADING });
     try {
-      const response = await axios.get("https://netflixclone-eawo.onrender.com/sub/products");
+      const response = await axios.get(`${url}/sub/products`);
 
       dispatch({ type: ActionType.SUCCESS, payload: response.data });
     } catch (error) {
