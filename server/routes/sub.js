@@ -8,7 +8,7 @@ const { stripe } = require("../utils/stripe");
 const checkAuth = require("../middleware");
 const fetchSubscription = require("../services/fetchSubscription")
 
-// const url = process.env.REACT_URL;
+
 
 // logic to fetch our products
 
@@ -44,8 +44,8 @@ router.post("/session", async (req, res) => {
         quantity: 1,
       },
     ],
-    success_url: "https://graceful-paletas-d17270.netlify.app//browse",
-    cancel_url: "https://graceful-paletas-d17270.netlify.app//plans",
+    success_url: "https://emveeflix.netlify.app/browse",
+    cancel_url: "https://emveeflix.netlify.app/plans",
     customer_email: email,
   });
 
