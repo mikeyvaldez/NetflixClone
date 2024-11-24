@@ -148,4 +148,4 @@ router.get("/me", async (req, res) => {
   return res.json(user);
 })
 
-module.exports = router;
+export default router;

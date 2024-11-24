@@ -65,4 +65,4 @@ router.get("/movie/:id", checkAuth, async (req, res) => {
   return res.send(movie);
 });
 
-module.exports = router;
+export default router;
