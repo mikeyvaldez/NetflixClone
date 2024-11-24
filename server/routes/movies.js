@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const { prisma } = require("../db");
-const checkAuth = require("../middleware");
-const fetchSubscription = require("../services/fetchSubscription");
+import { prisma } from "../db";
+import checkAuth from "../middleware";
+import fetchSubscription from "../services/fetchSubscription";
 
 // movie list page
 router.get("/movies/list", checkAuth, async (req, res) => {
