@@ -1,8 +1,9 @@
 
-const express = require("express");  // import express
-const cors = require("cors");        // import cors
+import express from "express";  // import express
+import cors from "cors";        // import cors
+import path from "path";
+
 const app = express();  // create express app
-const path = require("path");
 
 app.use(express.json())
 app.use(cors());
