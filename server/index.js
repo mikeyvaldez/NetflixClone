@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 });
 
 
-app.use("", movies);
+app.use("/movies", movies);
 app.use("/auth", auth);
 app.use("/sub", sub);
 
