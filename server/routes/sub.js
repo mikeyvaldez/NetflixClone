@@ -44,8 +44,8 @@ router.post("/session", async (req, res) => {
         quantity: 1,
       },
     ],
-    success_url: "https://emveeFlix.onrender.com/browse",
-    cancel_url: "https://emveeFlix.onrender.com/plans",
+    success_url: "https://netflixclone-f6xy.onrender.com/browse",
+    cancel_url: "https://netflixclone-f6xy.onrender.com/plans",
     customer_email: email,
   });
 
