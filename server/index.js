@@ -1,6 +1,9 @@
 
 import express from "express";  // import express
 import cors from "cors";        // import cors
+import movies from "./routes/movies";
+import auth from "./routes/auth";
+import sub from "./routes/sub";
 import path from "path";
 
 const app = express();  // create express app
@@ -14,9 +17,9 @@ app.get("/", (req, res) => {
 });
 
 
-app.use("", require("./routes/movies"));
-app.use("/auth", require("./routes/auth"));
-app.use("/sub", require("./routes/sub"));
+app.use("", movies);
+app.use("/auth", auth);
+app.use("/sub", sub);
 
 const port = process.env.PORT;
 const __dirname = path.resolve();
