@@ -4,7 +4,7 @@
 
 // import express router
 import express from "express";
-import { stripe } from "../utils/stripe.js";
+import stripe from "../utils/stripe.js";
 import checkAuth from "../middleware/index.js";
 import fetchSubscription from "../services/fetchSubscription.js";
 

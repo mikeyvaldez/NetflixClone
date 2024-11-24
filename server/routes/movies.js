@@ -1,5 +1,5 @@
 import express from "express";
-import { prisma } from "../db/index.js";
+import prisma from "../db/index.js";
 import checkAuth from "../middleware/index.js";
 import fetchSubscription from "../services/fetchSubscription.js";
 
