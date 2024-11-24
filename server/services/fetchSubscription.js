@@ -1,4 +1,4 @@
-import { stripe } from "../utils/stripe.js";
+import stripe from "../utils/stripe.js";
 
 
 export default async (email) => {
