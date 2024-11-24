@@ -6,8 +6,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "node ./server/index.js",
-    "start": "node ./server/index.js",
-    "build": "npx prisma generate --schema=prisma/schema.prisma && npm install && npm install --prefix client && npm run build --prefix client"
+    "start": "npx prisma generate --schema=server/prisma/schema.prisma && node ./server/index.js",
+    "build": "npm install && npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
