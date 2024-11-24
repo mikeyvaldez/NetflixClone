@@ -2,10 +2,11 @@
   "name": "netflixclone",
   "version": "1.0.0",
   "description": "",  
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "node server/index.js",
-    "start": "node server/index.js",
+    "dev": "node ./server/index.js",
+    "start": "node ./server/index.js",
     "build": "npm install && npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
