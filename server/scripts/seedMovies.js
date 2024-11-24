@@ -1,5 +1,5 @@
 import movies from "../movies.json";
-import { prisma } from "../db";
+import { prisma } from "../db/index.js";
 
 
 const seedMovies = async () => {

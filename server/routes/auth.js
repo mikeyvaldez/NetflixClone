@@ -1,6 +1,6 @@
 import express from "express";
 import { check, validationResult } from "express-validator";
-import { prisma } from "../db";
+import { prisma } from "../db/index.js";
 import bcrypt from "bcrypt";
 import JWT from "jsonwebtoken";
 
