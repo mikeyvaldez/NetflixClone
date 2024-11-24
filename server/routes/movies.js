@@ -1,7 +1,7 @@
 import express from "express";
 import { prisma } from "../db";
 import checkAuth from "../middleware";
-import fetchSubscription from "../services/fetchSubscription";
+import fetchSubscription from "../services/fetchSubscription.js";
 
 const router = express.Router();
 

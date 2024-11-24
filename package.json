@@ -1,7 +1,8 @@
 {
   "name": "netflixclone",
   "version": "1.0.0",
-  "description": "",    
+  "description": "",  
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "node server/index.js",

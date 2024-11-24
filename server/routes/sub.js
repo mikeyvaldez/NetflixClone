@@ -2,13 +2,13 @@
 // connects to our index.js file
 //------------------------------
 
-// require express router
-const router = require("express").Router();
-const { stripe } = require("../utils/stripe");
-const checkAuth = require("../middleware");
-const fetchSubscription = require("../services/fetchSubscription")
+// import express router
+import express from "express";
+import { stripe } from "../utils/stripe.js";
+import checkAuth from "../middleware";
+import fetchSubscription from "../services/fetchSubscription.js";
 
-
+const router = express.Router();
 
 // logic to fetch our products
 
