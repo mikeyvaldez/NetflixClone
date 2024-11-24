@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node ./server/index.js",
-    "start": "npx prisma db push && npx prisma generate && node ./server/index.js",
+    "start": "npx prisma db push && npx prisma generate --schema=./prisma/schema.prisma && node ./server/index.js",
     "build": "npm install && npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
