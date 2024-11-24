@@ -7,8 +7,7 @@
   "scripts": {
     "dev": "node ./server/index.js",
     "start": "node ./server/index.js",
-    "build": "npm install && npm install --prefix client && npm run build --prefix client",
-    "postinstall": "npx prisma generate --schema=prisma/schema.prisma"
+    "build": "npx prisma generate --schema=prisma/schema.prisma && npm install && npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
