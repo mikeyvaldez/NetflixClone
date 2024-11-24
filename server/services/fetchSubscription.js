@@ -1,7 +1,7 @@
-const { stripe } = require("../utils/stripe");
+import { stripe } from "../utils/stripe";
 
 
-module.exports = async (email) => {
+export default async (email) => {
     const response = await stripe.customers.search({
         query: `email: \'${email}\'`,
     });

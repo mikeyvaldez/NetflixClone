@@ -1,5 +1,5 @@
-const movies = require("../movies.json")
-const { prisma } = require("../db")
+import movies from "../movies.json";
+import { prisma } from "../db";
 
 
 const seedMovies = async () => {

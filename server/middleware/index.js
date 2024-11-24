@@ -1,7 +1,7 @@
 
-const JWT = require("jsonwebtoken");
+import JWT from "jsonwebtoken";
 
-module.exports = async (req, res, next) => {
+export default async (req, res, next) => {
   const bearerToken = req.headers.authorization;
   if (!bearerToken)
     return res.status(403).json({

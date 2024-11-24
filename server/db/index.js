@@ -1,8 +1,8 @@
-const { PrismaClient } = require("@prisma/client")  // allows us to create a new instance of prisma
+import { PrismaClient } from "@prisma/client"  // allows us to create a new instance of prisma
 
 const prisma = new PrismaClient()   // new isntance
 
 
-module.exports = {
+export default {
     prisma,
 };
